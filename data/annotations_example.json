@@ -1,0 +1,34 @@
+[{
+		"iid": "fc64ce36-c063-4ee0-bfaf-eb6ca82f8dea",
+		"label": "Liverpool",
+		"origin_types": ["City", "Settlement", "PopulatedPlace", "Place", "Location"],
+		"uri": "45f6d10457de9ad89ec749831749cfbf",
+		"item": {
+			"lod": {
+				"dbpedia": "http://dbpedia.org/resource/Liverpool",
+				"wikipedia": "http://en.wikipedia.org/wiki/Liverpool"
+			},
+			"image": {
+				"thumbnail": "https://commons.wikimedia.org/wiki/Special:FilePath/Liverpool-Montage.jpg?width=300",
+				"full": "https://commons.wikimedia.org/wiki/Special:FilePath/Liverpool-Montage.jpg"
+			},
+			"origin_types": ["http://dbpedia.org/ontology/City", "http://dbpedia.org/ontology/Settlement", "http://dbpedia.org/ontology/PopulatedPlace", "http://dbpedia.org/ontology/Place", "http://dbpedia.org/ontology/Location"],
+			"alternateLabels": ["Liverpool", "Liverpool, England", "Liverpudlian", "Liverpool, Merseyside", "City of Liverpool"],
+			"origin_id": 18081,
+			"rules": 255,
+			"abstract": "Liverpool is a major city and metropolitan borough in North West England. The estimated population of the city of Liverpool metropolitan borough was 478,580 in 2015, while Liverpool and its surrounding areas combine to form the fifth largest metropolitan area in the UK with over 2.24 million people in 2011. The local authority is Liverpool City Council, which is the most populous local government district within the metropolitan county of Merseyside and the largest within the wider Liverpool City Region.",
+			"categories": ["1207 establishments", "Liverpool", "Cities in North West England", "Metropolitan boroughs", "Populated coastal places in Merseyside", "Populated places established in the 13th century", "Port cities and towns of the Irish Sea", "Port cities and towns in England", "Towns in Merseyside", "Articles including recorded pronunciations (UK English)", "Local government districts of North West England", "NUTS 3 statistical regions of the United Kingdom"],
+			"label": "Liverpool",
+			"title": "Liverpool",
+			"uri": "http://en.wikipedia.org/wiki/Liverpool"
+		},
+		"lastModifiedTime": 1519827729270,
+		"publishedTime": 1495212546067,
+		"alternateLabels": ["Liverpool", "Liverpool, England", "Liverpudlian", "Liverpool, Merseyside", "City of Liverpool"],
+		"origin_id": 18081,
+		"id": "8ca96cb4-02dc-48b1-b27f-2f1ccdfaeda5",
+		"previous_id": "fc64ce36-c063-4ee0-bfaf-eb6ca82f8dea",
+		"type": "annotations",
+		"title": "Liverpool"
+	}
+]
