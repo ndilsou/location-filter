@@ -18,6 +18,9 @@ class ArticleSpider(scrapy.Spider):
         for json_article in json_response:
             article = ArticleItem.from_dict(json_article)
             self.log(article)
+
+            yield article
+
             for annotation_uri in article["annotation_uri"]:
                 yield response.follow(f"{self.annotation_url}?uri={annotation_uri}", self.parse_annotations)
                 yield response.follow(f"{self.location_url}?annotation_uri={annotation_uri}", self.parse_locations)
@@ -32,9 +35,13 @@ class ArticleSpider(scrapy.Spider):
             annotation = AnnotationItem.from_dict(json_annotation)
             self.log(annotation)
 
+            yield annotation
+
     def parse_locations(self, response):
-        json_response = json.loads(response.text)
         json_response = json.loads(response.text)
         for json_location in json_response:
             location = LocationItem.from_dict(json_location)
             self.log(location)
+
+            yield location
+

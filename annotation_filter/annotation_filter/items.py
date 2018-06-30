@@ -71,6 +71,7 @@ class AnnotationItem(Item):
     def from_dict(cls, data):
         item = cls()
         fill_field('iid', data, item)
+        fill_field('id', data, item)
         fill_field('label', data, item)
         fill_field('origin_types', data, item)
         fill_field('uri', data, item)

@@ -67,6 +67,7 @@ ROBOTSTXT_OBEY = True
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'annotation_filter.pipelines.DuplicatesPipeline': 300,
+   'annotation_filter.pipelines.JsonLineItemDispatcherPipeline': 400,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
