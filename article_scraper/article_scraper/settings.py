@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for annotation_filter project
+# Scrapy settings for article_scraper project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,15 +9,15 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'annotation_filter'
+BOT_NAME = 'article_scraper'
 
-SPIDER_MODULES = ['annotation_filter.spiders']
-NEWSPIDER_MODULE = 'annotation_filter.spiders'
+SPIDER_MODULES = ['article_scraper.spiders']
+NEWSPIDER_MODULE = 'article_scraper.spiders'
 
-FEED_FORMAT = "jl"
+#FEED_FORMAT = "jl"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'annotation_filter (+http://www.yourdomain.com)'
+#USER_AGENT = 'article_scraper (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -48,13 +48,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'annotation_filter.middlewares.AnnotationFilterSpiderMiddleware': 543,
+#    'article_scraper.middlewares.AnnotationFilterSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'annotation_filter.middlewares.AnnotationFilterDownloaderMiddleware': 543,
+#    'article_scraper.middlewares.AnnotationFilterDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -66,20 +66,26 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'annotation_filter.pipelines.DuplicatesPipeline': 300,
-   'annotation_filter.pipelines.JsonLineItemDispatcherPipeline': 400,
+   #'article_scraper.pipelines.CounterPipeline': 300,
+    #'article_scraper.pipelines.SpiderClosePipeline': 400,
+   'article_scraper.pipelines.JsonLinesGzipItemDispatcherPipeline': 500
+
 }
 
+LIMITED_TYPE = 'articles'
+LIMIT = 150
+OUTPUT_DIR = "../data"
+#LOG_FILE = "scrapper.log"
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
-#AUTOTHROTTLE_ENABLED = True
+AUTOTHROTTLE_ENABLED = True
 # The initial download delay
-#AUTOTHROTTLE_START_DELAY = 5
+AUTOTHROTTLE_START_DELAY = 5
 # The maximum download delay to be set in case of high latencies
 #AUTOTHROTTLE_MAX_DELAY = 60
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
-#AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
+AUTOTHROTTLE_TARGET_CONCURRENCY = 30.0
 # Enable showing throttling stats for every response received:
 #AUTOTHROTTLE_DEBUG = False
 

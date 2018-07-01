@@ -124,8 +124,6 @@ class LocationItem(Item):
         fill_field('id', data, item)
         fill_field('type', data, item)
         fill_field('postcode_sector', data, item)
-
-
         return item
 
     def __repr__(self):
