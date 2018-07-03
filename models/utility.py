@@ -1,5 +1,6 @@
 import gzip
 import json
+import os
 
 import pandas as pd
 import random
@@ -10,23 +11,27 @@ import jsonlines
 PATTERN = re.compile("www\.| |\.com|\.co\.uk|\.org|\.uk|\.ie|\.net")
 
 
+def get_current_file_directory():
+    return os.path.dirname(__file__)
+
 def load_dataset():
     """
     load the articles, annotations and locations data as lists of dictionaries.
     :return: articles, annotations, locations
     """
-
-    with gzip.open("../data/articles.jl.gz", "rb") as fh:
+    cwd = os.path.dirname(__file__)
+    parent_dir = os.path.dirname(cwd)
+    with gzip.open(os.path.join(parent_dir, "data/articles.jl.gz"), "rb") as fh:
         with jsonlines.Reader(fh) as reader:
             raw_articles = [item for item in reader]
             print(f"articles count: {len(raw_articles)}")
 
-    with gzip.open("../data/annotations.jl.gz", "rb") as fh:
+    with gzip.open(os.path.join(parent_dir, "data/annotations.jl.gz"), "rb") as fh:
         with jsonlines.Reader(fh) as reader:
             raw_annotations = [item for item in reader]
             print(f"annotations count: {len(raw_annotations)}")
 
-    with gzip.open("../data/locations.jl.gz", "rb") as fh:
+    with gzip.open(os.path.join(parent_dir, "data/locations.jl.gz"), "rb") as fh:
         with jsonlines.Reader(fh) as reader:
             raw_locations = [item for item in reader]
             print(f"locations count: {len(raw_locations)}")
@@ -98,8 +103,10 @@ def get_annotation_uri_index(annotations, locations):
 
 def sample_locations(locations, k, known_loc_ids):
     """
+    Provides a sample of locations ids that are out of the set of known locations.
+    Use this method to form the negative part of your sample.
 
-    :param locations:
+    :param locations: the list of raw locations.
     :param k:
     :param known_loc_ids:
     :return:
@@ -119,6 +126,7 @@ def get_loc_features(selected_ids, locations, features):
     :param features:
     :return:
     """
+
     geo_loc = []
     location_index = get_location_index(locations)
     for loc_id in selected_ids:
@@ -126,3 +134,20 @@ def get_loc_features(selected_ids, locations, features):
         geo_loc.append((loc_id, *(location[f] for f in features)))
     geo_loc = pd.DataFrame(geo_loc, columns=["lat", "lng", "id"])
     return geo_loc
+
+
+def get_dummies(frame, col, return_columns=False):
+    """
+    Replaces a categorical column in the target frame by a set of one-hot encoded columns.
+    :param frame: the target pandas DataFrame.
+    :param col: the column to one-hot encode.
+    :return: the dataframe with the one-hot encoded columns added and the original column dropped.
+    """
+
+    one_hot_encoded = pd.get_dummies(frame[col])
+    encoded_columns = one_hot_encoded.columns
+    one_hot_encoded = pd.concat((frame, one_hot_encoded), axis=1)
+    if return_columns:
+        return one_hot_encoded.drop(col, axis=1), encoded_columns
+    else:
+        return one_hot_encoded.drop(col, axis=1)
